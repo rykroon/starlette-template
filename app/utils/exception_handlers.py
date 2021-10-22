@@ -4,7 +4,8 @@ from starlette.responses import JSONResponse
 
 def http_exception_handler(request, exc):
     return JSONResponse({
-        'detail': exc.detail
+        'error': exc.detail,
+        'error_description': ''
     }, status_code=exc.status_code)
 
 
