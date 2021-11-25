@@ -25,7 +25,6 @@ config = Config()
 
 app.state.redis_client = aioredis.from_url(host=config('REDIS_HOST'))
 
-
 app.state.mongodb_client = MotorClient(
     config('MONGODB_HOST')
 )
