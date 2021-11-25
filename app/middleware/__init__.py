@@ -1,11 +1,9 @@
 from starlette.middleware import Middleware
 from starlette.middleware.authentication import AuthenticationMiddleware
 
-from utils.authentication import BasicAuth
-from middleware.redis import RedisCacheMiddleware
+from utils.auth.authentication import BasicAuth
 
 
 middleware = [
-    Middleware(RedisCacheMiddleware),
     Middleware(AuthenticationMiddleware, backend=BasicAuth())
 ]

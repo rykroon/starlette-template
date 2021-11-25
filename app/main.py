@@ -1,5 +1,5 @@
-from pymongo import MongoClient
-import redis
+from motor.motor_asyncio import AsyncIOMotorClient as MotorClient
+import aioredis
 from starlette.applications import Starlette
 from starlette.config import Config
 
@@ -23,13 +23,10 @@ app = Starlette(
 config = Config()
 
 
-app.state.redis_connection_pool = redis.ConnectionPool(
-    host=config('REDIS_HOST'),
-    password=config('REDIS_PASSWORD', default=None)
-)
+app.state.redis_client = aioredis.from_url(host=config('REDIS_HOST'))
 
 
-app.state.mongodb_client = MongoClient(
+app.state.mongodb_client = MotorClient(
     config('MONGODB_HOST')
 )
 
