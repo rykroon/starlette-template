@@ -16,8 +16,8 @@ services:
     ports:
       - "80:8000"
     volumes:
-      - '../app:/app/host_app'
-    working_dir: /app/host_app
+      - '../app:/usr/src/host_app'
+    working_dir: /usr/src/host_app
   mongodb:
     container_name: starlette-app-mongodb
     image: mongo
